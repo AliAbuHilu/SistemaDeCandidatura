@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Candidatar";
+}
+
+<h2>Candidatar Pessoa a Vaga</h2>
+
+<form asp-action="Candidatar" method="post">
+    <label>Pessoa:</label>
+    <select name="pessoaId">
+        @foreach (var p in ViewBag.Pessoas)
+        {
+            <option value="@p.Id">@p.Nome</option>
+        }
+    </select>
+
+    <label>Vaga:</label>
+    <select name="vagaId">
+        @foreach (var v in ViewBag.Vagas)
+        {
+            <option value="@v.Id">@v.Titulo</option>
+        }
+    </select>
+
+    <button type="submit">Enviar</button>
+</form>

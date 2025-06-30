@@ -1,0 +1,15 @@
+@model WebApp.ViewModels.VagaViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da Vaga";
+}
+
+<h2>Detalhes da Vaga</h2>
+
+<div>
+    <h4>@Model.Titulo</h4>
+    <p><strong>Descrição:</strong> @Model.Descricao</p>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Voltar</a>

@@ -1,0 +1,115 @@
+﻿@model List<WebApp.ViewModels.CandidaturaViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Candidaturas";
+    var vagas = ViewBag.Vagas as List<WebApp.ViewModels.VagaViewModel>;
+    int paginaAtual = (int)ViewBag.PaginaAtual;
+    int totalPaginas = (int)ViewBag.TotalPaginas;
+    int? vagaSelecionada = ViewBag.VagaSelecionada as int?;
+    string busca = ViewBag.Busca as string;
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">@ViewData["Title"]</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> Nova Candidatura
+        </a>
+
+        <form method="get" asp-action="Index" class="d-flex flex-wrap gap-2 align-items-end">
+            <div>
+                <label class="form-label">Vaga</label>
+                <select name="vagaId" class="form-select">
+                    <option value="">Todas</option>
+                    @if (vagas != null)
+                    {
+                        foreach (var vaga in vagas)
+                        {
+                            if (vaga.Id == vagaSelecionada)
+                            {
+                                <option value="@vaga.Id" selected>@vaga.Titulo</option>
+                            }
+                            else
+                            {
+                                <option value="@vaga.Id">@vaga.Titulo</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label class="form-label">Buscar</label>
+                <input type="text" name="busca" class="form-control" placeholder="Pessoa ou vaga" value="@busca" />
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-outline-primary mt-1">
+                    <i class="bi bi-search"></i> Filtrar
+                </button>
+            </div>
+
+            <div>
+                <label class="form-label d-none d-md-block">&nbsp;</label>
+                <a asp-action="ExportarCsv"
+                   asp-route-vagaId="@vagaSelecionada"
+                   asp-route-busca="@busca"
+                   class="btn btn-outline-success mt-1">
+                    <i class="bi bi-download"></i> CSV
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Pessoa</th>
+                <th>Vaga</th>
+                <th>Aprovado</th>
+                <th style="width: 140px;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.PessoaNome</td>
+                    <td>@item.VagaTitulo</td>
+                    <td>@(item.Aprovado ? "Sim" : "Não")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1" title="Editar">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Excluir">
+                            <i class="bi bi-trash3"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (totalPaginas > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= totalPaginas; i++)
+                {
+                    <li class="page-item @(i == paginaAtual ? "active" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-pagina="@i"
+                           asp-route-vagaId="@vagaSelecionada"
+                           asp-route-busca="@busca">
+                            @i
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+</div>

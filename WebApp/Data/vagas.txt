@@ -1,0 +1,10 @@
+2;recepcionista ;requisitos  da vaga ;False
+3;Ferramenteiro ;requisitos  da vaga ;False
+4;Desenvolvedor de Software ;requisitos  da vaga ;False
+5;Assistente Administrativo ;requisitos  da vaga ;False
+6;Porteiro ;requisitos  da vaga ;False
+7;Vigilante ;requisitos  da vaga ;False
+8;Diretor Comercial ;requisitos  da vaga ;False
+9;Medico ;requisitos  da vaga ;False
+10;Enfermeiro ;requisitos  da vaga ;False
+11;Atendente de Creche ;requisitos  da vaga ;False

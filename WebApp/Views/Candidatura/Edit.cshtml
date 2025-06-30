@@ -1,0 +1,42 @@
+﻿@model WebApp.ViewModels.CandidaturaViewModel
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Editar Candidatura";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="PessoaId">Pessoa</label>
+        <select asp-for="PessoaId" class="form-control" asp-items="(IEnumerable<SelectListItem>)ViewBag.Pessoas">
+            <option value="">Selecione uma pessoa</option>
+        </select>
+        <span asp-validation-for="PessoaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VagaId">Vaga</label>
+        <select asp-for="VagaId" class="form-control" asp-items="(IEnumerable<SelectListItem>)ViewBag.VagasSelect">
+            <option value="">Selecione uma vaga</option>
+        </select>
+        <span asp-validation-for="VagaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="Aprovado" class="form-check-input" />
+        <label asp-for="Aprovado" class="form-check-label">Aprovado</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

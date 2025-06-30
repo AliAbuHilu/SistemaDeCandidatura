@@ -1,0 +1,19 @@
+@model WebApp.ViewModels.VagaViewModel
+
+
+@{
+    ViewData["Title"] = "Excluir Vaga";
+}
+
+<h2>Confirmar Exclusão</h2>
+
+<div>
+    <h4>@Model.Titulo</h4>
+    <p><strong>Descrição:</strong> @Model.Descricao</p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

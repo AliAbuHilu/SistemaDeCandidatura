@@ -1,0 +1,38 @@
+@model List<WebApp.ViewModels.PessoaViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Pessoas";
+}
+
+<div class="container mt-4">
+    <h2>Lista de Pessoas</h2>
+
+    <a class="btn btn-success mb-3" asp-action="Create">Cadastrar Nova Pessoa</a>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pessoa in Model)
+            {
+                <tr>
+                    <td>@pessoa.Id</td>
+                    <td>@pessoa.Nome</td>
+                    <td>@pessoa.Email</td>
+                    <td>@pessoa.Telefone</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@pessoa.Id">Editar</a>
+                        <a href="/Pessoa/Delete/@pessoa.Id" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

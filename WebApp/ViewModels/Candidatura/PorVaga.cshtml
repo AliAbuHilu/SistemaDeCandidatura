@@ -1,0 +1,32 @@
+@model List<WebApp.ViewModels.CandidaturaViewModel>
+@{
+    ViewData["Title"] = "Candidatos";
+    var vaga = ViewBag.Vaga;
+}
+
+<h2>Candidatos à vaga: @vaga.Titulo</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.PessoaNome</td>
+            <td>@(c.Aprovado ? "Aprovado" : "Pendente")</td>
+            <td>
+                @if (!c.Aprovado)
+                {
+                    <a asp-action="Aprovar" asp-route-id="@c.Id" asp-route-vagaId="@c.VagaId" class="btn btn-success">Aprovar</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

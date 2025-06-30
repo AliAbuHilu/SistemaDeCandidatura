@@ -1,0 +1,36 @@
+@model List<WebApp.ViewModels.VagaViewModel>
+
+
+@{
+    ViewData["Title"] = "Vagas";
+}
+
+<h2>Vagas</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nova Vaga</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Titulo</td>
+        <td>@item.Descricao</td>
+        <td>
+            
+            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Excluir</a>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>

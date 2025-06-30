@@ -1,0 +1,8 @@
+1;ali muhammad abu hilu;alimu_14@hotmail.com;51992337106
+2;Andre Guedes ;andre@gmail.com.br;51992337106
+3;cristina rocha de souza ;cristina@gmail.com.br;519999999
+4;Juvenal de Souza ;juven@hotmail.com;51999545454
+5;Mariele da Silva ;mariXX@gmail.com;51992337106
+6;Maria do Carmo da Silva ;mcarmo@hotmail.com;51936588445
+7;Mauro Roberto da Siva ;mauro@hotmail.com;51992365487
+8;Sonia de Souza ;sonia@hotmail.com;51992337106

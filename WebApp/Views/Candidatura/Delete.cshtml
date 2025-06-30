@@ -1,0 +1,28 @@
+﻿@model WebApp.ViewModels.CandidaturaViewModel
+
+@{
+    ViewData["Title"] = "Confirmar Exclusão";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Tem certeza que deseja excluir esta candidatura?</h4>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Pessoa</dt>
+        <dd class="col-sm-10">@Model.PessoaNome (ID: @Model.PessoaId)</dd>
+
+        <dt class="col-sm-2">Vaga</dt>
+        <dd class="col-sm-10">@Model.VagaTitulo (ID: @Model.VagaId)</dd>
+
+        <dt class="col-sm-2">Aprovado</dt>
+        <dd class="col-sm-10">@(Model.Aprovado ? "Sim" : "Não")</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
