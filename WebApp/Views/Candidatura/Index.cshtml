@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "Lista de Candidaturas";
-    var vagas = ViewBag.Vagas as List<WebApp.ViewModels.VagaViewModel>;
+    var vagas = ViewBag.VagasSelect as List<SelectListItem>;
     int paginaAtual = (int)ViewBag.PaginaAtual;
     int totalPaginas = (int)ViewBag.TotalPaginas;
     int? vagaSelecionada = ViewBag.VagaSelecionada as int?;
+    bool? aprovadoSelecionado = ViewBag.AprovadoSelecionado as bool?;
     string busca = ViewBag.Busca as string;
 }
 
@@ -26,16 +27,23 @@
                     {
                         foreach (var vaga in vagas)
                         {
-                            if (vaga.Id == vagaSelecionada)
-                            {
-                                <option value="@vaga.Id" selected>@vaga.Titulo</option>
-                            }
-                            else
-                            {
-                                <option value="@vaga.Id">@vaga.Titulo</option>
-                            }
+                            var selected = vaga.Value == vagaSelecionada?.ToString() ? "selected" : null;
+                            <option value="@vaga.Value" selected="@selected">@vaga.Text</option>
                         }
                     }
+                </select>
+            </div>
+
+            <div>
+                <label class="form-label">Aprovado</label>
+                @{
+                    var selectedSim = aprovadoSelecionado == true ? "selected" : null;
+                    var selectedNao = aprovadoSelecionado == false ? "selected" : null;
+                }
+                <select name="aprovado" class="form-select">
+                    <option value="">Todos</option>
+                    <option value="true" selected="@selectedSim">Sim</option>
+                    <option value="false" selected="@selectedNao">Não</option>
                 </select>
             </div>
 
@@ -54,6 +62,7 @@
                 <label class="form-label d-none d-md-block">&nbsp;</label>
                 <a asp-action="ExportarCsv"
                    asp-route-vagaId="@vagaSelecionada"
+                   asp-route-aprovado="@aprovadoSelecionado"
                    asp-route-busca="@busca"
                    class="btn btn-outline-success mt-1">
                     <i class="bi bi-download"></i> CSV
@@ -104,6 +113,7 @@
                            asp-action="Index"
                            asp-route-pagina="@i"
                            asp-route-vagaId="@vagaSelecionada"
+                           asp-route-aprovado="@aprovadoSelecionado"
                            asp-route-busca="@busca">
                             @i
                         </a>

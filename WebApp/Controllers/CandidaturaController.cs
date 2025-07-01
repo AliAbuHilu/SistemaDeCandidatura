@@ -42,7 +42,7 @@ namespace WebApp.Controllers
                 c.VagaTitulo = vagas.FirstOrDefault(v => v.Id == c.VagaId)?.Titulo ?? "Desconhecida";
             }
 
-            // Filtros
+            // Aplicar filtros
             if (vagaId.HasValue)
                 candidaturas = candidaturas.Where(c => c.VagaId == vagaId.Value).ToList();
 
@@ -62,10 +62,10 @@ namespace WebApp.Controllers
                 .Take(tamanhoPagina)
                 .ToList();
 
-            // ViewBags
+            // ViewBags para filtros e dropdowns
             await PopularDropDownsAsync();
             ViewBag.VagaSelecionada = vagaId;
-            ViewBag.AprovadoSelecionado = aprovado;
+            ViewBag.Aprovado = aprovado;
             ViewBag.Busca = busca;
             ViewBag.PaginaAtual = pagina;
             ViewBag.TotalPaginas = totalPaginas;
@@ -73,6 +73,7 @@ namespace WebApp.Controllers
             return View(paginadas);
         }
 
+        // Exportação CSV
         [HttpGet]
         public async Task<IActionResult> ExportarCsv(int? vagaId, string busca, bool? aprovado)
         {
