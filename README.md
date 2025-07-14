@@ -38,3 +38,15 @@ O armazenamento é simulado através de arquivos .txt para facilitar o uso sem b
 1. Clone este repositório:  
    ```bash
    git clone https://github.com/AliAbuHilu/SistemaDeCandidatura.git
+
+2. Abra a solução no Visual Studio 2022 (ou superior) e execute a aplicação (pressione F5).
+
+3. Restaure os pacotes NuGet, se necessário: dotnet restore
+
+4. Compile e execute o projeto (F5 no Visual Studio ou no terminal):dotnet run --project WebApp
+
+
+5. Quando a aplicação iniciar, observe no terminal a mensagem com a URL onde o servidor está rodando, por exemplo:Now listening on: https://localhost:7186
+
+6. Acesse essa URL no navegador para usar o sistema.
+
