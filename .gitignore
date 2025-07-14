@@ -1,0 +1,21 @@
+# Pastas do Visual Studio
+.vs/
+*.suo
+*.user
+
+# Build
+bin/
+obj/
+
+# Arquivos temporários e cache
+*.cache
+*.db
+*.pdb
+*.exe
+
+# Documentos locais
+*.odt
+
+# Outras pastas
+TestResults/
+packages/
